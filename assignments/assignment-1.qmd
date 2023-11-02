@@ -1,6 +1,7 @@
 ---
 title: "Assignment 1"
 ---
+
 #Section A:
 
 **I chose to summarize [the talk Tom Mock made](https://www.youtube.com/watch?v=mrvhk2XUfWo) introducing Quarto.**
@@ -15,28 +16,32 @@ After elaborating on the perks that come with using Quarto (like adaptability wi
 
 #Section B:
 
-1 - While we use "<-" to assign values to variables in     **R**,
+1 - While we use "\<-" to assign values to variables in **R**,
 
 ```{r}
 my_var <- 42
 ```
 
-    We use "=" to assign values to variables in **Python**.
-    
+```         
+We use "=" to assign values to variables in **Python**.
+```
+
 ```{Python}
 my_var = 42
 ```
 
-2 - While "functionName <- function(x)" assignment is used to create functions in **R**,
+2 - While "functionName \<- function(x)" assignment is used to create functions in **R**,
 
 ```{r}
 my_var <- function(x,y) {
   x+y
   }
 ```
-    
-    We use "def" to create functions in **Python**.
-    
+
+```         
+We use "def" to create functions in **Python**.
+```
+
 ```{Python}
 def functionName(x,y):
   return x+y
@@ -45,6 +50,7 @@ def functionName(x,y):
 3- R's list has the ability to contain different types of variables which is pretty different from that of Python's.
 
 R example:
+
 ```{r}
 someVar <- c(8,9,0)
 someNames <- c("One", "Two", "Three")
@@ -52,7 +58,7 @@ someDict <- data.frame(someVar,someNames)
 
 someList <- list(someVar, someNames)
 ```
-    
+
 Python example:
 
 ```{Python}
@@ -63,8 +69,7 @@ pList = ["s","i","m","p","l","e"]
 
 ```{r}
 library(dslabs)
-varName <- data(na_example)
-print(varName)
+varName <- data.frame(na_example)
 print(sum(is.na(varName)))
 varName[is.na(varName)] <- 0
 print(varName)
