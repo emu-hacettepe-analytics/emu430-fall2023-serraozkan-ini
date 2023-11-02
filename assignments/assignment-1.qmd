@@ -62,6 +62,7 @@ pList = ["s","i","m","p","l","e"]
 #Section C
 
 ```{r}
+library(dslabs)
 varName <- data(na_example)
 print(varName)
 print(sum(is.na(varName)))
