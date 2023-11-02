@@ -2,7 +2,7 @@
 title: "Assignment 1"
 ---
 
-#Section A:
+## Section A:
 
 **I chose to summarize [the talk Tom Mock made](https://www.youtube.com/watch?v=mrvhk2XUfWo) introducing Quarto.**
 
@@ -14,7 +14,7 @@ Next, he gives information on how they improved on the fundamentals of RMarkdown
 
 After elaborating on the perks that come with using Quarto (like adaptability with several editors) he concludes his talk by showing his gratitude to the development team.
 
-#Section B:
+## Section B:
 
 1 - While we use "\<-" to assign values to variables in **R**,
 
@@ -22,9 +22,7 @@ After elaborating on the perks that come with using Quarto (like adaptability wi
 my_var <- 42
 ```
 
-```         
 We use "=" to assign values to variables in **Python**.
-```
 
 ```{Python}
 my_var = 42
@@ -38,9 +36,7 @@ my_var <- function(x,y) {
   }
 ```
 
-```         
 We use "def" to create functions in **Python**.
-```
 
 ```{Python}
 def functionName(x,y):
@@ -65,13 +61,14 @@ Python example:
 pList = ["s","i","m","p","l","e"]
 ```
 
-#Section C
+## Section C
 
 ```{r}
 library(dslabs)
 varName <- data.frame(na_example)
+varName
 print(sum(is.na(varName)))
 varName[is.na(varName)] <- 0
-print(varName)
+varName
 print(sum(is.na(varName)))
 ```
