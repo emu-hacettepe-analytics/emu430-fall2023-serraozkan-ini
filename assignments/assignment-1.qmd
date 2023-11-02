@@ -23,7 +23,7 @@ my_var <- 42
 
     We use "=" to assign values to variables in **Python**.
     
-```{python}
+```{Python}
 my_var = 42
 ```
 
@@ -37,7 +37,7 @@ my_var <- function(x,y) {
     
     We use "def" to create functions in **Python**.
     
-```{python}
+```{Python}
 def functionName(x,y):
   return x+y
 ```
@@ -55,7 +55,7 @@ someList <- list(someVar, someNames)
     
 Python example:
 
-```{python}
+```{Python}
 pList = ["s","i","m","p","l","e"]
 ```
 
