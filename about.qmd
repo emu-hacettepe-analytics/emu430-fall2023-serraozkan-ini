@@ -28,7 +28,7 @@ sidebar: false
 
 -   SolidWorks
 
--   Microsoft Office Softwares
+-   Microsoft Office Software
 
 # Hobbies
 
@@ -44,4 +44,4 @@ sidebar: false
 
 # CV Link
 
--   [CV File](SERRA ÖZKAN RESUME.pdf)
+-   [CV File](SERRA%20ÖZKAN%20RESUME.pdf)
