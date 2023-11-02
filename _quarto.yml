@@ -1,5 +1,7 @@
 project:
   type: website
+  resources: 
+    - "SERRA ÖZKAN RESUME.pdf"
   output-dir: docs
 
 website:
@@ -44,8 +46,8 @@ format:
     toc: true
     toc-location: left
     theme: 
-      light: pulse 
-      dark: superhero
+      light: lux
+      dark: lux
     css: styles.css
 
 

@@ -5,26 +5,43 @@ sidebar: false
 
 # Education
 
--   B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing.
+-   B.S., Industrial Engineering, Hacettepe University, Turkey, 2020 - ongoing.
+-   Highschool, Dr. Binnaz - Dr. Rıdvan Ege Anadolu Lisesi, 2016-2020
 
 # Work Experience
 
-## Employements
-
-1.  Firm xxx, position xx, year xxx
-
-2.  Firm yyy, position yyy, year yyy
-
 ## Internships
 
-1.  Firm aaa, position xx, year xxx
+1.  Inovasyon Muhendislik Ltd. Şti. , Project Management Intern, 2023 August
 
-2.  Firm bbb, position yyy, year yyy
+2.  Türk HENKEL Ankara Plant, Liquid Production Intern, 2023 September
 
 # Projects
 
 # Competencies
 
-R, Quarto, Git, Python
+-   R
+
+-   Quarto
+
+-   Adobe Photoshop, Premiere Pro, Illustrator
+
+-   SolidWorks
+
+-   Microsoft Office Softwares
 
 # Hobbies
+
+-   Technology
+
+-   Video Games
+
+-   Cars
+
+-   Volleyball
+
+-   PC Building
+
+# CV Link
+
+-   [CV File](SERRA ÖZKAN RESUME.pdf)

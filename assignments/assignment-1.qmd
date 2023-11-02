@@ -4,12 +4,12 @@ title: "Assignment 1"
 
 # Assignment 1
 
-```{r}
-1 + 1
-```
+**I chose to summarize [the talk Tom Mock made](https://www.youtube.com/watch?v=mrvhk2XUfWo) introducing Quarto.**
 
-My first assignment has two parts.
+In this talk Tom Mock generally talks about the process they went through with his partners while working on Quarto, the reactions they received when they started to talk about it and the situation with RMarkdown.
 
-## (a)
+While starting the talk he briefly goes over some of the reactions they received and proceeds to give some technical information on Quarto. Like what languages it works with and what is to be expected of Quarto.
 
-## (b)
+Next, he gives information on how they improved on the fundamentals of RMarkdown's working process for literate programming. After explaining what goes on in the background when we publish a file with Quarto, he illustrates usage scenarios with some chunks of code. 
+
+After elaborating on the perks that come with using Quarto (like adaptability with several editors) he concludes his talk by showing his gratitude to the development team. 

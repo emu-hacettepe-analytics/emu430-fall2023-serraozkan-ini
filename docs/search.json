@@ -25,7 +25,7 @@
     "href": "about.html",
     "title": "About Me",
     "section": "",
-    "text": "B.S., Industrial Engineering, Hacettepe University, Turkey, 20xx - ongoing."
+    "text": "B.S., Industrial Engineering, Hacettepe University, Turkey, 2020 - ongoing.\nHighschool, Dr. Binnaz - Dr. Rıdvan Ege Anadolu Lisesi, 2016-2020"
   },
   {
     "objectID": "about.html#employements",
@@ -39,14 +39,14 @@
     "href": "about.html#internships",
     "title": "About Me",
     "section": "Internships",
-    "text": "Internships\n\nFirm aaa, position xx, year xxx\nFirm bbb, position yyy, year yyy"
+    "text": "Internships\n\nInovasyon Muhendislik Ltd. Şti. , Project Management Intern, 2023 August\nTürk HENKEL Ankara Plant, Liquid Production Intern, 2023 September"
   },
   {
     "objectID": "assignments/assignment-1.html",
     "href": "assignments/assignment-1.html",
     "title": "Assignment 1",
     "section": "",
-    "text": "1 + 1\n\n[1] 2\n\n\nMy first assignment has two parts."
+    "text": "Assignment 1\nI chose to summarize the talk Tom Mock made introducing Quarto.\nIn this talk Tom Mock generally talks about the process they went through with his partners while working on Quarto, the reactions they received when they started to talk about it and the situation with RMarkdown.\nWhile starting the talk he briefly goes over some of the reactions they received and proceeds to give some technical information on Quarto. Like what languages it works with and what is to be expected of Quarto.\nNext, he gives information on how they improved on the fundamentals of RMarkdown’s working process for literate programming. After explaining what goes on in the background when we publish a file with Quarto, he illustrates usage scenarios with some chunks of code.\nAfter elaborating on the perks that come with using Quarto (like adaptability with several editors) he concludes his talk by showing his gratitude to the development team.\n\n\n\n\n Back to top"
   },
   {
     "objectID": "assignments.html",
