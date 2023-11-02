@@ -1,6 +1,7 @@
 ---
 title: "Assignment 1"
 ---
+#Section A:
 
 **I chose to summarize [the talk Tom Mock made](https://www.youtube.com/watch?v=mrvhk2XUfWo) introducing Quarto.**
 
@@ -8,6 +9,63 @@ In this talk Tom Mock generally talks about the process they went through with h
 
 While starting the talk he briefly goes over some of the reactions they received and proceeds to give some technical information on Quarto. Like what languages it works with and what is to be expected of Quarto.
 
-Next, he gives information on how they improved on the fundamentals of RMarkdown's working process for literate programming. After explaining what goes on in the background when we publish a file with Quarto, he illustrates usage scenarios with some chunks of code. 
+Next, he gives information on how they improved on the fundamentals of RMarkdown's working process for literate programming. After explaining what goes on in the background when we publish a file with Quarto, he illustrates usage scenarios with some chunks of code.
 
-After elaborating on the perks that come with using Quarto (like adaptability with several editors) he concludes his talk by showing his gratitude to the development team. 
+After elaborating on the perks that come with using Quarto (like adaptability with several editors) he concludes his talk by showing his gratitude to the development team.
+
+#Section B:
+
+1 - While we use "<-" to assign values to variables in     **R**,
+
+```{r}
+my_var <- 42
+```
+
+    We use "=" to assign values to variables in **Python**.
+    
+```{python}
+my_var = 42
+```
+
+2 - While "functionName <- function(x)" assignment is used to create functions in **R**,
+
+```{r}
+my_var <- function(x,y) {
+  x+y
+  }
+```
+    
+    We use "def" to create functions in **Python**.
+    
+```{python}
+def functionName(x,y):
+  return x+y
+```
+
+3- R's list has the ability to contain different types of variables which is pretty different from that of Python's.
+
+R example:
+```{r}
+someVar <- c(8,9,0)
+someNames <- c("One", "Two", "Three")
+someDict <- data.frame(someVar,someNames)
+
+someList <- list(someVar, someNames)
+```
+    
+Python example:
+
+```{python}
+pList = ["s","i","m","p","l","e"]
+```
+
+#Section C
+
+```{r}
+varName <- data(na_example)
+print(varName)
+print(sum(is.na(varName)))
+varName[is.na(varName)] <- 0
+print(varName)
+print(sum(is.na(varName)))
+```
