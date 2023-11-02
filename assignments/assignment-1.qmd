@@ -24,7 +24,7 @@ my_var <- 42
 
 We use "=" to assign values to variables in **Python**.
 
-```{Python}
+```{python}
 my_var = 42
 ```
 
@@ -57,7 +57,7 @@ someList <- list(someVar, someNames)
 
 Python example:
 
-```{Python}
+```{python}
 pList = ["s","i","m","p","l","e"]
 ```
 
