@@ -2,8 +2,6 @@
 title: "Assignment 1"
 ---
 
-# Assignment 1
-
 **I chose to summarize [the talk Tom Mock made](https://www.youtube.com/watch?v=mrvhk2XUfWo) introducing Quarto.**
 
 In this talk Tom Mock generally talks about the process they went through with his partners while working on Quarto, the reactions they received when they started to talk about it and the situation with RMarkdown.
