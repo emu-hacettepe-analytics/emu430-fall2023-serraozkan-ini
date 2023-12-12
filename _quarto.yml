@@ -43,11 +43,8 @@ website:
     border: true
 format:
   html:
-    toc: true
-    toc-location: left
-    theme: 
-      light: lux
-      dark: lux
+    toc: false
+    theme: sandstone
     css: styles.css
 
 

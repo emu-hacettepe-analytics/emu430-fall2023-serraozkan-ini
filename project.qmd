@@ -3,10 +3,12 @@ title: "Our Course Project"
 sidebar: false 
 ---
 
-I'm honored to be a member of the \[group name\] project team.
+I'm honored to be a member of the ***4k1e_rda*** project team.
 
-Below, you'll find a brief summary of our project. To access a detailed project description, please go to [https://\[your-project-url\]](#0){.uri}.
+Below, you'll find a brief summary of our project. To access a detailed project description, please go to [our project website](https://emu-hacettepe-analytics.github.io/emu430-fall2023-bilgekavakli/).
 
 **Summary**
 
-\[provide a biref summary of your project\]
+Our project will focus on the rate of different types of crime depending on the years between 2011 and 2020. Depending on the outcome, genders and educational statuses of criminals might be considered as well.
+
+We got our data from the Turkish Statistical Institution website. It consists of the year the crime was committed, the type of crime, the criminal's gender and educational status.

@@ -1,5 +1,6 @@
 ---
 title: "Assignment 1"
+highlight-style: monokai
 ---
 
 ## Section A:
@@ -38,7 +39,7 @@ my_var <- function(x,y) {
 
 We use "def" to create functions in **Python**.
 
-```{Python}
+```{python}
 def functionName(x,y):
   return x+y
 ```
@@ -65,10 +66,10 @@ pList = ["s","i","m","p","l","e"]
 
 ```{r}
 library(dslabs)
-varName <- data.frame(na_example)
+varName <- c(na_example)
 varName
-print(sum(is.na(varName)))
+sum(is.na(varName))
 varName[is.na(varName)] <- 0
 varName
-print(sum(is.na(varName)))
+sum(is.na(varName))
 ```
