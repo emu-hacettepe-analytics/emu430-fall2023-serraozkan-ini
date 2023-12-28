@@ -1,16 +1,3 @@
----
-title: "Assignment 2"
-code-fold: true
-warning: false
----
-# 1 and 2
-### Scraping and Tidying
-
-For the first part of the assignment I was required to scrap Turkish movie data from the IMDB site using the advanced movie search. You can see the code I used to scrap the html and tidy it into a data frame called `movie_info`.
-
-```{r}
-#| code-summary: "Show the code"
-#| class-output: output
 library(tidyverse)
 library(rvest)
 library(stringr)
@@ -69,68 +56,25 @@ vote_read <- c(site_2010 |> html_elements(".kRnqtn") |> html_text(),
 colnames(vote_read) <- c("votes")
 
 movie_info <- data.frame(movies, years, rates, vote_read, durations)
-```
-
-# 3
-## a)
-### The 5 Top Rated movies:
-
-```{r}
-#| class-output: output
 
 movie_info <- arrange(movie_info, desc(rate))
 first_5 <- movie_info[1:5,1:3]
 last_5 <- tail(movie_info[,1:3], n=5)
-first_5
-```
 
-### The 5 Worst Rated movies:
-
-```{r}
-#| echo: false
-#| class-output: output
-last_5
-```
-
-Out of the top rated movies, I have watched all except for ***Tosun Pasa***. Since the IMDb ratings are based on subjective rates of people, although I think there are movies which deserve top 5 more, I can not say that these movies do not deserve their ratings. The bottom rated movies however, are disliked by the majority of the users so there must be something wrong with them to receive these ratings.
-
-## b)
-### My Favorites
-
-```{r}
-#| echo: false
-#| class-output: output
-movie_info[str_detect(movie_info$title, "G.O.R.A."),]
-movie_info[str_detect(movie_info$title, "^Mucize$"),]
-```
-
-I adore ***G.O.R.A.*** and ***Mucize***. I think both got the ratings they deserved, but Mucize has a special place in my heart with its beautiful sceneries, convincing acting and accents, good ending, and emotional story.
-
-## c)
-### Extracting Knowledge out of Data
-
-**Yearly rating averages:**
-```{r}
 grouped_rate <- group_by(movie_info, year) |> summarise(rate_avg = mean(rate))
 
 plot_rate <- ggplot(grouped_rate, aes(year, rate_avg)) +
   geom_point(col = "#CC0066")
 
 plot_rate
-```
 
-**Number of movies over the years:**
-```{r}
 grouped_num <- group_by(movie_info, year) |> summarise(n_movies = n())
 
 plot_num <- ggplot(grouped_num, aes(year, n_movies)) +
   geom_point(col = "#330066")
 
 plot_num
-```
 
-**Box plots of ratings over the years:**
-```{r}
 plot_box <- ggplot(movie_info, aes(factor(year), rate)) +
   geom_boxplot(fill = "#339999")+
   xlab("year")+
@@ -138,26 +82,19 @@ plot_box <- ggplot(movie_info, aes(factor(year), rate)) +
   theme(axis.text.x = element_text(angle = 90))
 
 plot_box
-```
 
-The box plot shows that other than a few exceptions means and lower quantiles for movie ratings tend to drop over the years. And the lowest rated movies also appear in more recent years.
+plot_votes <- ggplot(movie_info, aes(rate, votes)) +
+  geom_point(col = "#333366")+
+  scale_y_log10()+
+  ylab("votes (scaled by log10)")
 
-## d)
-### Votes vs Rate:
-```{r}
+plot_votes
+
 grouped_rate <- group_by(movie_info, rate) |> summarise(vote_avg = mean(votes))
 
 plot_vote_avg <- ggplot(grouped_rate, aes(rate, vote_avg)) +
   geom_point(col = "#005566")
 
-plot_vote_avg
-```
-
-The only conclusion we can come to from this plot is that movies with really high ratings tend to have higher votes, which can be caused by more people watching them because they are good already? Seems pretty natural.
-
-## e)
-### Duration vs Rate
-```{r}
 grouped_duration <- group_by(movie_info, duration) |> summarise(rate = mean(rate))
 
 plot_dur <- ggplot(grouped_duration, aes(duration, rate)) +
@@ -165,6 +102,3 @@ plot_dur <- ggplot(grouped_duration, aes(duration, rate)) +
   theme(axis.text.x = element_text(angle = 90))
 
 plot_dur
-```
-
-No. Maybe "extreme duration = bad rating" but that is pretty much it.
