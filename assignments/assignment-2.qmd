@@ -3,7 +3,9 @@ title: "Assignment 2"
 code-fold: true
 warning: false
 ---
+
 # 1 and 2
+
 ### Scraping and Tidying
 
 For the first part of the assignment I was required to scrap Turkish movie data from the IMDB site using the advanced movie search. You can see the code I used to scrap the html and tidy it into a data frame called `movie_info`.
@@ -72,7 +74,9 @@ movie_info <- data.frame(movies, years, rates, vote_read, durations)
 ```
 
 # 3
+
 ## a)
+
 ### The 5 Top Rated movies:
 
 ```{r}
@@ -95,6 +99,7 @@ last_5
 Out of the top rated movies, I have watched all except for ***Tosun Pasa***. Since the IMDb ratings are based on subjective rates of people, although I think there are movies which deserve top 5 more, I can not say that these movies do not deserve their ratings. The bottom rated movies however, are disliked by the majority of the users so there must be something wrong with them to receive these ratings.
 
 ## b)
+
 ### My Favorites
 
 ```{r}
@@ -107,9 +112,11 @@ movie_info[str_detect(movie_info$title, "^Mucize$"),]
 I adore ***G.O.R.A.*** and ***Mucize***. I think both got the ratings they deserved, but Mucize has a special place in my heart with its beautiful sceneries, convincing acting and accents, good ending, and emotional story.
 
 ## c)
+
 ### Extracting Knowledge out of Data
 
 **Yearly rating averages:**
+
 ```{r}
 grouped_rate <- group_by(movie_info, year) |> summarise(rate_avg = mean(rate))
 
@@ -120,6 +127,7 @@ plot_rate
 ```
 
 **Number of movies over the years:**
+
 ```{r}
 grouped_num <- group_by(movie_info, year) |> summarise(n_movies = n())
 
@@ -130,6 +138,7 @@ plot_num
 ```
 
 **Box plots of ratings over the years:**
+
 ```{r}
 plot_box <- ggplot(movie_info, aes(factor(year), rate)) +
   geom_boxplot(fill = "#339999")+
@@ -143,7 +152,9 @@ plot_box
 The box plot shows that other than a few exceptions means and lower quantiles for movie ratings tend to drop over the years. And the lowest rated movies also appear in more recent years.
 
 ## d)
+
 ### Votes vs Rate:
+
 ```{r}
 grouped_rate <- group_by(movie_info, rate) |> summarise(vote_avg = mean(votes))
 
@@ -156,7 +167,9 @@ plot_vote_avg
 The only conclusion we can come to from this plot is that movies with really high ratings tend to have higher votes, which can be caused by more people watching them because they are good already? Seems pretty natural.
 
 ## e)
+
 ### Duration vs Rate
+
 ```{r}
 grouped_duration <- group_by(movie_info, duration) |> summarise(rate = mean(rate))
 
@@ -168,3 +181,34 @@ plot_dur
 ```
 
 No. Maybe "extreme duration = bad rating" but that is pretty much it.
+
+# 4
+
+## Turkish Movies in Top 1000
+
+```{r}
+#| class-output: output
+site_top1000 <- read_html("https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR")
+top1000_title <- site_top1000 |> html_elements("h3") |> html_text()
+top1000_title <- top1000_title[! top1000_title == "Recently viewed"]
+top1000_title <- data.frame(top1000_title) |>
+  separate(top1000_title, into = c("number", "titles"), sep = ". ", extra = "merge")
+top1000_title <- data.frame(top1000_title$titles)
+colnames(top1000_title) <- c("title")
+
+top1000_year <- site_top1000 |> html_elements(".dli-title-metadata-item") |> html_text()
+top1000_year <- c(top1000_year |> str_extract("\\d{4}") |> as.numeric())
+top1000_year <- top1000_year[complete.cases(top1000_year)] |> data.frame()
+colnames(top1000_year) <- c("year")
+
+top1000 <- data.frame(top1000_title,top1000_year)
+
+joined_df <- left_join(top1000, movie_info, by = "title")
+
+joined_df <- joined_df[order(desc(joined_df$rate)),]
+joined_df
+```
+
+These are obviously not the highest rated movies of all the Turkish movies, so maybe the Top 1000 is dependent on popularity as well.
+
+![](shrug.png){width=200 fig-align="left"}

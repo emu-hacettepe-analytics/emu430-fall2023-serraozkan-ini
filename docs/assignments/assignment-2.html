@@ -336,11 +336,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>      title year rate votes duration
-39 G.O.R.A. 2004    8 66029    2h 7m</code></pre>
+39 G.O.R.A. 2004    8 66033    2h 7m</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre class="output"><code>    title year rate votes duration
-90 Mucize 2015  7.6 13894   2h 16m</code></pre>
+90 Mucize 2015  7.6 13899   2h 16m</code></pre>
 </div>
 </div>
 <p>I adore <strong><em>G.O.R.A.</em></strong> and <strong><em>Mucize</em></strong>. I think both got the ratings they deserved, but Mucize has a special place in my heart with its beautiful sceneries, convincing acting and accents, good ending, and emotional story.</p>
@@ -440,9 +440,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>No.&nbsp;Maybe “extreme duration = bad rating” but that is pretty much it.</p>
-
-
 </section>
+</section>
+</section>
+<section id="section-1" class="level1">
+<h1>4</h1>
+<section id="turkish-movies-in-top-1000" class="level2">
+<h2 class="anchored" data-anchor-id="turkish-movies-in-top-1000">Turkish Movies in Top 1000</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>site_top1000 <span class="ot">&lt;-</span> <span class="fu">read_html</span>(<span class="st">"https://m.imdb.com/search/title/?title_type=feature&amp;groups=top_1000&amp;country_of_origin=TR"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>top1000_title <span class="ot">&lt;-</span> site_top1000 <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">"h3"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>top1000_title <span class="ot">&lt;-</span> top1000_title[<span class="sc">!</span> top1000_title <span class="sc">==</span> <span class="st">"Recently viewed"</span>]</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>top1000_title <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(top1000_title) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(top1000_title, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"number"</span>, <span class="st">"titles"</span>), <span class="at">sep =</span> <span class="st">". "</span>, <span class="at">extra =</span> <span class="st">"merge"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>top1000_title <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(top1000_title<span class="sc">$</span>titles)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(top1000_title) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"title"</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>top1000_year <span class="ot">&lt;-</span> site_top1000 <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">".dli-title-metadata-item"</span>) <span class="sc">|&gt;</span> <span class="fu">html_text</span>()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>top1000_year <span class="ot">&lt;-</span> <span class="fu">c</span>(top1000_year <span class="sc">|&gt;</span> <span class="fu">str_extract</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">d{4}"</span>) <span class="sc">|&gt;</span> <span class="fu">as.numeric</span>())</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>top1000_year <span class="ot">&lt;-</span> top1000_year[<span class="fu">complete.cases</span>(top1000_year)] <span class="sc">|&gt;</span> <span class="fu">data.frame</span>()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(top1000_year) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"year"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>top1000 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(top1000_title,top1000_year)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>joined_df <span class="ot">&lt;-</span> <span class="fu">left_join</span>(top1000, movie_info, <span class="at">by =</span> <span class="st">"title"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>joined_df <span class="ot">&lt;-</span> joined_df[<span class="fu">order</span>(<span class="fu">desc</span>(joined_df<span class="sc">$</span>rate)),]</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>joined_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre class="output"><code>                       title year.x year.y rate votes duration
+4  Ayla: The Daughter of War   2017   2017  8.3 42992    2h 5m
+1   Yedinci Kogustaki Mucize   2019   2019  8.2 54171   2h 12m
+5             Babam ve Oglum   2005   2005  8.2 91035   1h 48m
+8                     Eskiya   1996   1996  8.1 71704    2h 8m
+11  Her Sey Çok Güzel Olacak   1998   1998  8.1 27122   1h 47m
+2                 Kis Uykusu   2014   2014  8.0 54646   3h 16m
+3      Nefes: Vatan Sagolsun   2009   2009  8.0 35022    2h 8m
+6                Ahlat Agaci   2018   2018  8.0 27015    3h 8m
+9                   G.O.R.A.   2004   2004  8.0 66033    2h 7m
+10                 Vizontele   2001   2001  8.0 38403   1h 50m
+7    Bir Zamanlar Anadolu'da   2011   2011  7.8 49365   2h 37m</code></pre>
+</div>
+</div>
+<p>These are obviously not the highest rated movies of all the Turkish movies, so maybe the Top 1000 is dependent on popularity as well.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="shrug.png" class="img-fluid figure-img" width="200"></p>
+</figure>
+</div>
+
+
 </section>
 </section>
 

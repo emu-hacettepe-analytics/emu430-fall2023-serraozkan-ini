@@ -53,7 +53,7 @@
     "href": "assignments.html",
     "title": "My Assignments",
     "section": "",
-    "text": "On this page, I showcase the assignment I conducted for the Fall 2023 EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on December 12, 2023\n\n\n\n Back to top"
+    "text": "On this page, I showcase the assignment I conducted for the Fall 2023 EMU 430 Data Analytics course.\nPlease use left menu to navigate through my assignments.\nThe most recent update to this page was made on December 28, 2023\n\n\n\n Back to top"
   },
   {
     "objectID": "posts.html",
@@ -102,7 +102,7 @@
     "href": "assignments/assignment-2.html#b",
     "title": "Assignment 2",
     "section": "b)",
-    "text": "b)\n\nMy Favorites\n\n\n      title year rate votes duration\n39 G.O.R.A. 2004    8 66029    2h 7m\n\n\n    title year rate votes duration\n90 Mucize 2015  7.6 13894   2h 16m\n\n\nI adore G.O.R.A. and Mucize. I think both got the ratings they deserved, but Mucize has a special place in my heart with its beautiful sceneries, convincing acting and accents, good ending, and emotional story."
+    "text": "b)\n\nMy Favorites\n\n\n      title year rate votes duration\n39 G.O.R.A. 2004    8 66033    2h 7m\n\n\n    title year rate votes duration\n90 Mucize 2015  7.6 13899   2h 16m\n\n\nI adore G.O.R.A. and Mucize. I think both got the ratings they deserved, but Mucize has a special place in my heart with its beautiful sceneries, convincing acting and accents, good ending, and emotional story."
   },
   {
     "objectID": "assignments/assignment-2.html#c",
@@ -124,5 +124,12 @@
     "title": "Assignment 2",
     "section": "e)",
     "text": "e)\n\nDuration vs Rate\n\n\nCode\ngrouped_duration &lt;- group_by(movie_info, duration) |&gt; summarise(rate = mean(rate))\n\nplot_dur &lt;- ggplot(grouped_duration, aes(duration, rate)) +\n  geom_point(col = \"#FF33CC\")+\n  theme(axis.text.x = element_text(angle = 90))\n\nplot_dur\n\n\n\n\n\nNo. Maybe “extreme duration = bad rating” but that is pretty much it."
+  },
+  {
+    "objectID": "assignments/assignment-2.html#turkish-movies-in-top-1000",
+    "href": "assignments/assignment-2.html#turkish-movies-in-top-1000",
+    "title": "Assignment 2",
+    "section": "Turkish Movies in Top 1000",
+    "text": "Turkish Movies in Top 1000\n\n\nCode\nsite_top1000 &lt;- read_html(\"https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR\")\ntop1000_title &lt;- site_top1000 |&gt; html_elements(\"h3\") |&gt; html_text()\ntop1000_title &lt;- top1000_title[! top1000_title == \"Recently viewed\"]\ntop1000_title &lt;- data.frame(top1000_title) |&gt;\n  separate(top1000_title, into = c(\"number\", \"titles\"), sep = \". \", extra = \"merge\")\ntop1000_title &lt;- data.frame(top1000_title$titles)\ncolnames(top1000_title) &lt;- c(\"title\")\n\ntop1000_year &lt;- site_top1000 |&gt; html_elements(\".dli-title-metadata-item\") |&gt; html_text()\ntop1000_year &lt;- c(top1000_year |&gt; str_extract(\"\\\\d{4}\") |&gt; as.numeric())\ntop1000_year &lt;- top1000_year[complete.cases(top1000_year)] |&gt; data.frame()\ncolnames(top1000_year) &lt;- c(\"year\")\n\ntop1000 &lt;- data.frame(top1000_title,top1000_year)\n\njoined_df &lt;- left_join(top1000, movie_info, by = \"title\")\n\njoined_df &lt;- joined_df[order(desc(joined_df$rate)),]\njoined_df\n\n\n                       title year.x year.y rate votes duration\n4  Ayla: The Daughter of War   2017   2017  8.3 42992    2h 5m\n1   Yedinci Kogustaki Mucize   2019   2019  8.2 54171   2h 12m\n5             Babam ve Oglum   2005   2005  8.2 91035   1h 48m\n8                     Eskiya   1996   1996  8.1 71704    2h 8m\n11  Her Sey Çok Güzel Olacak   1998   1998  8.1 27122   1h 47m\n2                 Kis Uykusu   2014   2014  8.0 54646   3h 16m\n3      Nefes: Vatan Sagolsun   2009   2009  8.0 35022    2h 8m\n6                Ahlat Agaci   2018   2018  8.0 27015    3h 8m\n9                   G.O.R.A.   2004   2004  8.0 66033    2h 7m\n10                 Vizontele   2001   2001  8.0 38403   1h 50m\n7    Bir Zamanlar Anadolu'da   2011   2011  7.8 49365   2h 37m\n\n\nThese are obviously not the highest rated movies of all the Turkish movies, so maybe the Top 1000 is dependent on popularity as well."
   }
 ]

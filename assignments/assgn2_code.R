@@ -102,3 +102,22 @@ plot_dur <- ggplot(grouped_duration, aes(duration, rate)) +
   theme(axis.text.x = element_text(angle = 90))
 
 plot_dur
+
+site_top1000 <- read_html("https://m.imdb.com/search/title/?title_type=feature&groups=top_1000&country_of_origin=TR")
+top1000_title <- site_top1000 |> html_elements("h3") |> html_text()
+top1000_title <- top1000_title[! top1000_title == "Recently viewed"]
+top1000_title <- data.frame(top1000_title) |>
+  separate(top1000_title, into = c("number", "titles"), sep = ". ", extra = "merge")
+top1000_title <- data.frame(top1000_title$titles)
+colnames(top1000_title) <- c("title")
+
+top1000_year <- site_top1000 |> html_elements(".dli-title-metadata-item") |> html_text()
+top1000_year <- c(top1000_year |> str_extract("\\d{4}") |> as.numeric())
+top1000_year <- top1000_year[complete.cases(top1000_year)] |> data.frame()
+colnames(top1000_year) <- c("year")
+
+top1000 <- data.frame(top1000_title,top1000_year)
+
+joined_df <- left_join(top1000, movie_info, by = "title")
+
+joined_df <- joined_df[order(desc(joined_df$rate)),]
